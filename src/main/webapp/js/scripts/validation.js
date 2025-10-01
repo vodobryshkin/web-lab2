@@ -98,7 +98,7 @@ function isNumber(potNumber) {
 function validateX(potNumber) {
     let potIsNumber = isNumber(potNumber);
 
-    if (potNumber === IS_NUMBER_CODE) {
+    if (potIsNumber === IS_NUMBER_CODE) {
         let number = new Decimal(potNumber);
 
         if (number.lt(new Decimal("-5")) || number.gt(new Decimal("3"))) {
@@ -114,7 +114,7 @@ function validateX(potNumber) {
 function validateY(potNumber) {
     let potIsNumber = isNumber(potNumber);
 
-    if (potNumber === IS_NUMBER_CODE) {
+    if (potIsNumber === IS_NUMBER_CODE) {
         let number = new Decimal(potNumber);
         let yBorders = ["-2", "-1.5", "-1", "-0.5", "0", "0.5", "1", "1.5", "2"]
 
@@ -132,10 +132,10 @@ function validateY(potNumber) {
     return potIsNumber;
 }
 
-function validateR(potNumber) {
+export function validateR(potNumber) {
     let potIsNumber = isNumber(potNumber);
 
-    if (potNumber === IS_NUMBER_CODE) {
+    if (potIsNumber === IS_NUMBER_CODE) {
         let number = new Decimal(potNumber);
         let rBorders = ["1", "1.5", "2", "2.5", "3"]
 

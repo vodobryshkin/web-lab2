@@ -58,6 +58,7 @@
                     Поставить точку
                 </button>
             </form>
+            <canvas class="canvas" id="canvas" width="600" height="600"></canvas>
         </section>
 
         <footer class="footer">
@@ -65,4 +66,6 @@
         </footer>
 
         <script src="js/scripts/validation.js" type="module"></script>
+        <script src="js/scripts/main.js" type="module"></script>
+        <script src="js/scripts/r-choice-drawer.js" type="module"></script>
 </html>
