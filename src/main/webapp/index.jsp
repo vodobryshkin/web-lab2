@@ -65,7 +65,7 @@
 
         </footer>
 
-        <script src="js/scripts/validation.js" type="module"></script>
+        <script src="js/scripts/submition.js" type="module"></script>
         <script src="js/scripts/main.js" type="module"></script>
         <script src="js/scripts/r-choice-drawer.js" type="module"></script>
 </html>

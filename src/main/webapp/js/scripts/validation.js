@@ -7,21 +7,7 @@ const NUMBER_IS_OUT_OF_RANGE_CODE = "NUMBER_IS_OUT_OF_RANGE";
 const BLANK_IS_EMPTY_CODE = "BLANK_IS_EMPTY";
 const IS_NUMBER_CODE = "IS_NUMBER";
 
-const button = document.getElementById("confirm-btn");
-button.addEventListener("click", validation);
-
-function validation() {
-    const x = document.getElementById('input-x').value;
-    const y = document.getElementById('select-y').value;
-    const r = document.getElementById('select-r').value;
-
-    if (validateNumbers(x, y, r)) {
-        const form = document.getElementById("task-form");
-        form.requestSubmit();
-    }
-}
-
-function validateNumbers(x, y, r) {
+export function validateNumbers(x, y, r) {
     let valX = validateX(x);
     let valY = validateY(y);
     let valR = validateR(r);
