@@ -8,6 +8,9 @@ import lombok.Data;
  */
 @Data
 public class PointCheckerResponse {
+    private final String x;
+    private final String y;
+    private final String r;
     private final boolean status;
     private final CheckerStage checkerStage;
 }

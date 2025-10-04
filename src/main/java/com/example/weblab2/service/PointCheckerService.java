@@ -58,12 +58,12 @@ public class PointCheckerService {
         ValidationRequest validationRequest = new ValidationRequest(request.getX(), request.getY(), request.getR());
 
         if (!validationManager.validate(validationRequest)) {
-            return new PointCheckerResponse(false, CheckerStage.Validation);
+            return new PointCheckerResponse(request.getX(), request.getY(), request.getR(), false, CheckerStage.Validation);
         }
 
         CheckoutRequest checkoutRequest = new CheckoutRequest(request.getX(), request.getY(), request.getR());
 
-        return new PointCheckerResponse(checkoutManager.checkRequest(checkoutRequest), CheckerStage.Checkout);
+        return new PointCheckerResponse(request.getX(), request.getY(), request.getR(), checkoutManager.checkRequest(checkoutRequest), CheckerStage.Checkout);
     }
 
     // Переключение менеджера валидации

@@ -27,7 +27,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.Full;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(true, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, true, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -43,7 +43,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(true, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, true, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -59,7 +59,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -75,7 +75,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Validation);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Validation);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -91,7 +91,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.Full;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Validation);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Validation);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -107,7 +107,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.Full;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(true, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, true, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -123,7 +123,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(true, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, true, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -139,7 +139,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -155,7 +155,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Validation);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Validation);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -171,7 +171,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.Full;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Validation);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Validation);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -187,7 +187,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.Full;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(true, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, true, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -203,7 +203,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(true, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, true, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -219,7 +219,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Checkout);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Checkout);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -235,7 +235,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.OnlyR;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Validation);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Validation);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
@@ -251,7 +251,7 @@ public class PointCheckerServiceTest {
         ValManagerType valManagerType = ValManagerType.Full;
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(x, y, r, valManagerType);
-        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(false, CheckerStage.Validation);
+        PointCheckerResponse pointCheckerResponse = new PointCheckerResponse(x, y, r, false, CheckerStage.Validation);
 
         assertEquals(pointCheckerResponse, pointCheckerService.check(pointCheckerRequest));
     }
