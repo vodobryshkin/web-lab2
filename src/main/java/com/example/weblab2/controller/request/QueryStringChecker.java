@@ -1,6 +1,4 @@
-package com.example.weblab2.checker.impl;
-
-import com.example.weblab2.checker.interfaces.Checker;
+package com.example.weblab2.controller.request;
 
 public class QueryStringChecker implements Checker {
     /**

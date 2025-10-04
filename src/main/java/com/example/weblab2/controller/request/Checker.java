@@ -1,4 +1,4 @@
-package com.example.weblab2.checker.interfaces;
+package com.example.weblab2.controller.request;
 
 /**
  * Интерфейс для определения функциональности проверщиков запроса
