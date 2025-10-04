@@ -1,5 +1,6 @@
 package com.example.weblab2.web;
 
+import com.example.weblab2.dto.request.CheckerStage;
 import com.example.weblab2.dto.request.PointCheckerRequest;
 import com.example.weblab2.dto.response.PointCheckerResponse;
 import com.example.weblab2.repository.session.SessionStorageRepository;
@@ -42,6 +43,13 @@ public class AreaCheckServlet extends HttpServlet {
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(req.getQueryString());
         PointCheckerResponse pointCheckerResponse = pointCheckerService.check(pointCheckerRequest);
+
+        if (pointCheckerResponse.getCheckerStage() == CheckerStage.Validation) {
+            resp.setStatus(422);
+            req.getRequestDispatcher("/WEB-INF/errors/422.jsp").forward(req, resp);
+            return;
+        }
+
 
         log.info("Get result of service logic: {}", pointCheckerResponse);
 
