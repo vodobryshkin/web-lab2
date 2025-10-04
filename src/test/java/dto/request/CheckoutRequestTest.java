@@ -1,4 +1,4 @@
-package dto;
+package dto.request;
 
 import com.example.weblab2.dto.request.CheckoutRequest;
 import org.junit.jupiter.api.DisplayName;
