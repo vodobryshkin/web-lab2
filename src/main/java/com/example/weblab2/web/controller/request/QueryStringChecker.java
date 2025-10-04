@@ -1,4 +1,4 @@
-package com.example.weblab2.controller.request;
+package com.example.weblab2.web.controller.request;
 
 public class QueryStringChecker implements Checker {
     /**

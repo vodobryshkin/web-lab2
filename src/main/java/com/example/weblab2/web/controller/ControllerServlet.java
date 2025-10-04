@@ -1,6 +1,6 @@
-package com.example.weblab2.controller;
+package com.example.weblab2.web.controller;
 
-import com.example.weblab2.controller.request.QueryStringChecker;
+import com.example.weblab2.web.controller.request.QueryStringChecker;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -60,13 +61,42 @@
                 </button>
             </form>
             <canvas class="canvas" id="canvas" width="600" height="600"></canvas>
+            <div class="table__wrapper">
+
+                <table id="result-table">
+                    <tr>
+                        <th>X</th><th>Y</th><th>R</th><th>Попадание</th>
+                    </tr>
+
+                    <%
+                        @SuppressWarnings("unchecked")
+                        java.util.List<com.example.weblab2.dto.response.PointCheckerResponse> points =
+                                (java.util.List<com.example.weblab2.dto.response.PointCheckerResponse>)
+                                        session.getAttribute("points");
+
+                        if (points != null && !points.isEmpty()) {
+                            for (com.example.weblab2.dto.response.PointCheckerResponse point : points) {
+                    %>
+                        <tr>
+                            <td><%= point.getX() %></td>
+                            <td><%= point.getY() %></td>
+                            <td><%= point.getR() %></td>
+                            <td><%= point.isStatus() ? "Попал" : "Не попал" %></td>
+                        </tr>
+                    <%
+                        }
+                    }
+                    %>
+                </table>
+            </div>
         </section>
+
 
         <footer class="footer">
 
         </footer>
 
-        <script src="js/scripts/submition.js" type="module"></script>
-        <script src="js/scripts/main.js" type="module"></script>
-        <script src="js/scripts/r-choice-drawer.js" type="module"></script>
+        <script src="../js/scripts/submition.js" type="module"></script>
+        <script src="../js/scripts/main.js" type="module"></script>
+        <script src="../js/scripts/r-choice-drawer.js" type="module"></script>
 </html>

@@ -2,7 +2,9 @@ package com.example.weblab2.web;
 
 import com.example.weblab2.dto.request.PointCheckerRequest;
 import com.example.weblab2.dto.response.PointCheckerResponse;
+import com.example.weblab2.repository.session.SessionStorageRepository;
 import com.example.weblab2.service.PointCheckerService;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import java.io.IOException;
 @WebServlet(name = "AreaCheckServlet", urlPatterns = {"/points/check"})
 public class AreaCheckServlet extends HttpServlet {
     private PointCheckerService pointCheckerService;
+    private final SessionStorageRepository repository = new SessionStorageRepository();
 
     @Override
     public void init() {
@@ -34,7 +37,7 @@ public class AreaCheckServlet extends HttpServlet {
     }
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         log.info("Got request with queryString={} from the ControllerServlet", req.getQueryString());
 
         PointCheckerRequest pointCheckerRequest = new PointCheckerRequest(req.getQueryString());
@@ -42,6 +45,11 @@ public class AreaCheckServlet extends HttpServlet {
 
         log.info("Get result of service logic: {}", pointCheckerResponse);
 
-        resp.sendRedirect("/");
+        req.setAttribute("result", pointCheckerResponse);
+
+        repository.setHttpServletRequest(req);
+        repository.add(pointCheckerResponse);
+
+        req.getRequestDispatcher("/points/check/result").forward(req, resp);
     }
 }
