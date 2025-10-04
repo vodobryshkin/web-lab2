@@ -54,6 +54,7 @@
                         </label>
                     </li>
                 </ul>
+                <input type="hidden" name="type" value="&quot;full&quot;">
                 <button class="task-form__confirm-button" id="confirm-btn" type="submit">
                     Поставить точку
                 </button>

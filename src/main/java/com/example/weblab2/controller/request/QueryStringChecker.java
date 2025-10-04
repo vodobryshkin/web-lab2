@@ -9,7 +9,7 @@ public class QueryStringChecker implements Checker {
      */
     @Override
     public boolean check(String queryString) {
-        String regexPattern = "x=.+&y=.+&r=.+";
+        String regexPattern = "x=.+&y=.+&r=.+&type=\"(?:full|only_r)\"";
 
         return queryString.matches(regexPattern);
     }
