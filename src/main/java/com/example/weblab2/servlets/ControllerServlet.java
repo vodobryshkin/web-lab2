@@ -15,10 +15,10 @@ public class ControllerServlet extends HttpServlet {
         String queryString = req.getQueryString();
 
         if (queryString == null || !new QueryStringChecker().check(queryString)) {
-            resp.sendRedirect("/");
+            resp.sendRedirect(req.getContextPath() + "/");
             return;
         }
-
-        resp.sendRedirect("/points/check?" + queryString);
+        resp.sendRedirect(req.getContextPath() + "/points/check?" + queryString);
     }
 }
+

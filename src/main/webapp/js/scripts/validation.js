@@ -12,7 +12,7 @@ export function validateNumbers(x, y, r) {
     let valY = validateY(y);
     let valR = validateR(r);
 
-    if (typeof valX === "boolean" && valY === "boolean" && valR === "boolean") {
+    if (typeof valX === "boolean" && typeof valY === "boolean" && typeof valR === "boolean") {
         return true;
     }
 
@@ -22,7 +22,7 @@ export function validateNumbers(x, y, r) {
             return false;
 
         case NUMBER_IS_OUT_OF_RANGE_CODE:
-            alert("X выходит за границы (3, 5).");
+            alert("X выходит за границы (-5, 3).");
             return false;
 
         case BLANK_IS_EMPTY_CODE:

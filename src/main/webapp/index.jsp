@@ -12,7 +12,7 @@
         </header>
 
         <section class="task-section">
-            <form class="task-section__form task-form" id="task-form" method="get" action="">
+            <form class="task-section__form task-form" id="task-form" method="get" action="${pageContext.request.contextPath}/points">
                 <ul class="task-from__input-list input-list">
                     <li class="input-list__element input-list__element-x">
                         <label class="task-form__label task-form__label_x" for="input-x">
