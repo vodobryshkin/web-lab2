@@ -24,6 +24,14 @@ public class PointCheckerService {
     private final String valConfigPath;
     private final CheckoutManager checkoutManager;
 
+    /**
+     * Конструктор класса PointCheckerService. Внутри него создаются экземпляры менеджера для валидации и
+     * проверки попадания.
+     *
+     * @param valConfigPath путь к конфигурации для валидации.
+     * @param areaConfigPath путь к конфигурации для создания областей для проверки.
+     * @throws IOException при вводе некорректных данных.
+     */
     public PointCheckerService(String valConfigPath, String areaConfigPath) throws IOException {
         validationManager = new ValidationCompleteManager(valConfigPath);
         checkoutManager = new CheckoutManager(areaConfigPath);
@@ -32,12 +40,12 @@ public class PointCheckerService {
     }
 
     /**
-     * Функция для проверки бизнес-логикой.
+     * Метод для проверки бизнес-логикой.
      * 1. Сначала происходит проверка на то, какой ValidationManager использовать. Если пришел запрос на полную проверку,
      * а текущий manager проверяет только R, то нужно его поменять и наоборот.
-     * 2. После этого формируется запрос на валидацию и сама валидация. Результат валидации хранится в переменной status.
-     * Если валидация прошла неудачно, то
-     * 3.
+     * 2. После этого формируется запрос на валидацию и сама валидация. Если валидация прошла неудачно, то
+     * возвращается экземпляр класса PointCheckerResponse с status=false и checkerStage = Validation.
+     * 3. Если валидация прошла успешно, то создаётся
      *
      * @param request запрос на проверку бизнес логики.
      */
