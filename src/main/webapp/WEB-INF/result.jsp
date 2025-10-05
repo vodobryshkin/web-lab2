@@ -32,5 +32,13 @@
                 <button class="search-tag-link_btn">На стартовую страницу</button>
             </a>
         </section>
+        <canvas id="canvas" width="600" height="600" data-x="${result.x}" data-y="${result.y}" data-r="${result.r}"></canvas>
+        <script type="module">
+            import {drawPoint, draw} from "../js/scripts/canvas.js";
+            const canvas = document.getElementById('canvas');
+            const { x, y, r } = canvas.dataset;     // строки -> числа
+            draw(r);
+            drawPoint(+x, +y, +r);
+        </script>
     </body>
 </html>
