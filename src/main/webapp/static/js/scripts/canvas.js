@@ -1,4 +1,5 @@
 import {validateR} from "./validation.js";
+import {toast} from "./toast.js";
 
 const rLength = 250;
 export const DEFAULT_R_NAME = "R";
@@ -141,7 +142,7 @@ function getClickedCoordinates(e) {
 
     const r = document.getElementById('select-r').value;
     if (typeof validateR(r) === "string") {
-        alert("R не выбран"); return;
+        toast("R is not a number."); return;
     }
 
     const numR = Number(r);
