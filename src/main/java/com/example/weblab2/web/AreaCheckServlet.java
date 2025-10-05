@@ -3,7 +3,8 @@ package com.example.weblab2.web;
 import com.example.weblab2.dto.request.CheckerStage;
 import com.example.weblab2.dto.request.PointCheckerRequest;
 import com.example.weblab2.dto.response.PointCheckerResponse;
-import com.example.weblab2.repository.session.SessionStorageRepository;
+import com.example.weblab2.repository.appcontext.ApplicationContextRepository;
+import com.example.weblab2.repository.interfaces.Repository;
 import com.example.weblab2.service.PointCheckerService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,7 +25,7 @@ import java.io.IOException;
 @WebServlet(name = "AreaCheckServlet", urlPatterns = {"/points/check"})
 public class AreaCheckServlet extends HttpServlet {
     private PointCheckerService pointCheckerService;
-    private final SessionStorageRepository repository = new SessionStorageRepository();
+    private Repository repository;
 
     /**
      * Метод инициализации сервлета.
@@ -39,6 +40,7 @@ public class AreaCheckServlet extends HttpServlet {
             log.error("{}", e.getMessage());
             throw new RuntimeException(e);
         }
+        repository = new ApplicationContextRepository(getServletContext());
     }
 
     /**
@@ -68,7 +70,6 @@ public class AreaCheckServlet extends HttpServlet {
 
         req.setAttribute("result", pointCheckerResponse);
 
-        repository.setHttpServletRequest(req);
         repository.add(pointCheckerResponse);
 
         req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);

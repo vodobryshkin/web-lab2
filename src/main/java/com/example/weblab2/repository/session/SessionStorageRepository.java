@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * Репозиторий на основе хранилища JSP-сессии.
+ * Репозиторий на основе хранилища http-сессии.
  */
 public class SessionStorageRepository implements Repository {
     @Setter

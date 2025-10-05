@@ -1,3 +1,5 @@
+<%@ page import="com.example.weblab2.dto.response.PointCheckerResponse" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
@@ -75,9 +77,8 @@
 
                     <%
                         @SuppressWarnings("unchecked")
-                        java.util.List<com.example.weblab2.dto.response.PointCheckerResponse> points =
-                                (java.util.List<com.example.weblab2.dto.response.PointCheckerResponse>)
-                                        session.getAttribute("points");
+                        List<PointCheckerResponse> points =
+                                (List<PointCheckerResponse>) application.getAttribute("points");
 
                         if (points != null && !points.isEmpty()) {
                             for (com.example.weblab2.dto.response.PointCheckerResponse point : points) {
