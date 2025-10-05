@@ -5,6 +5,11 @@
     <head>
         <title>Лабораторная работа по веб-программированию #2</title>
         <meta charset="UTF-8">
+        <style>
+            canvas {
+                border: 1px solid;
+            }
+        </style>
     </head>
         <header class="header">
             <h1 class="header__element header__element_nsf">Добрышкин Владимир Александрович</h1>

@@ -1,5 +1,9 @@
+import {validateR} from "./validation.js";
+
 const rLength = 250;
 export const DEFAULT_R_NAME = "R";
+
+const canvas = document.getElementById("canvas");
 
 export function draw(rName) {
     drawCoordinatePlane(rName);
@@ -7,7 +11,6 @@ export function draw(rName) {
 }
 
 function drawCoordinatePlane(rName) {
-    const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -85,7 +88,6 @@ function drawCoordinatePlane(rName) {
 }
 
 function drawAreas() {
-    const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "rgba(221,67,255,0.3)";
 
@@ -107,15 +109,57 @@ function drawAreas() {
 }
 
 export function drawPoint(x, y, r) {
-    const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     ctx.fillStyle = "#ae43ff";
 
-    let correctX = x * (rLength / r) + canvas.width / 2;
-    let correctY = -y * (rLength / r) + canvas.width / 2;
+    const unit = rLength / r;
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+
+    const px = x * unit + cx;
+    const py = -y * unit + cy;
 
     ctx.beginPath();
-    ctx.arc(correctX, correctY, 5, 0, 2 * Math.PI);
+    ctx.arc(px, py, 5, 0, 2 * Math.PI);
     ctx.fill();
     ctx.closePath();
+}
+
+function getCanvasCoords(evt) {
+
+    const rect = canvas.getBoundingClientRect();
+    const cssX = (evt.clientX ?? evt.touches?.[0].clientX) - rect.left;
+    const cssY = (evt.clientY ?? evt.touches?.[0].clientY) - rect.top;
+    const scaleX = canvas.width  / rect.width;
+    const scaleY = canvas.height / rect.height;
+    return { x: cssX * scaleX, y: cssY * scaleY };
+}
+
+canvas.addEventListener("click", (e) => getClickedCoordinates(e));
+
+function getClickedCoordinates(e) {
+    const { x, y } = getCanvasCoords(e); // x,y — пиксели канваса
+
+    const r = document.getElementById('select-r').value;
+    if (typeof validateR(r) === "string") {
+        alert("R не выбран"); return;
+    }
+
+    const numR = Number(r);
+
+    const unit = rLength / numR;
+    const cx = canvas.width  / 2;
+    const cy = canvas.height / 2;
+
+    const correctX =  (x - cx) / unit;
+    const correctY = -(y - cy) / unit;
+
+    const form = document.getElementById('task-form');
+    const params = new URLSearchParams({
+        x: correctX.toFixed(3),
+        y: correctY.toFixed(3),
+        r: r,
+        type: '"only_r"'
+    });
+    location.href = `${form.action}?${params.toString()}`;
 }
