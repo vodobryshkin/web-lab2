@@ -36,9 +36,9 @@
         <script type="module">
             import {drawPoint, draw} from "../js/scripts/canvas.js";
             const canvas = document.getElementById('canvas');
-            const { x, y, r } = canvas.dataset;     // строки -> числа
+            const { x, y, r } = canvas.dataset;
             draw(r);
-            drawPoint(+x, +y, +r);
+            drawPoint(x, y, r);
         </script>
     </body>
 </html>

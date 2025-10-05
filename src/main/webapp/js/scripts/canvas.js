@@ -126,7 +126,6 @@ export function drawPoint(x, y, r) {
 }
 
 function getCanvasCoords(evt) {
-
     const rect = canvas.getBoundingClientRect();
     const cssX = (evt.clientX ?? evt.touches?.[0].clientX) - rect.left;
     const cssY = (evt.clientY ?? evt.touches?.[0].clientY) - rect.top;
@@ -138,7 +137,7 @@ function getCanvasCoords(evt) {
 canvas.addEventListener("click", (e) => getClickedCoordinates(e));
 
 function getClickedCoordinates(e) {
-    const { x, y } = getCanvasCoords(e); // x,y — пиксели канваса
+    const { x, y } = getCanvasCoords(e);
 
     const r = document.getElementById('select-r').value;
     if (typeof validateR(r) === "string") {

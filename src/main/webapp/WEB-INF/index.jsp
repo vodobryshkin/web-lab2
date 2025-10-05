@@ -74,7 +74,6 @@
                     <tr>
                         <th>X</th><th>Y</th><th>R</th><th>Попадание</th>
                     </tr>
-
                     <%
                         @SuppressWarnings("unchecked")
                         List<PointCheckerResponse> points =
@@ -97,12 +96,34 @@
             </div>
         </section>
 
-
         <footer class="footer">
 
         </footer>
 
+
         <script src="../js/scripts/submition.js" type="module"></script>
         <script src="../js/scripts/main.js" type="module"></script>
-        <script src="../js/scripts/r-choice-drawer.js" type="module"></script>
+
+        <script type="module">
+        import {drawPoint, draw} from "../js/scripts/canvas.js";
+        import {validateR} from "../js/scripts/validation.js";
+
+        window.drawPoint = drawPoint;
+
+        const rChoiceInput = document.getElementById("select-r");
+
+        rChoiceInput.addEventListener('change', () => {redrawCanvas(rChoiceInput.value)});
+
+        function redrawCanvas(r) {
+            if (typeof validateR(r) !== "string") {
+                draw(Number(r));
+                <% if (points != null) {
+                        for (PointCheckerResponse p : points) { %>
+                            window.drawPoint(<%= p.getX() %>, <%= p.getY() %>, r);
+                <%      }
+                   }
+                %>
+            }
+        }
+        </script>
 </html>
