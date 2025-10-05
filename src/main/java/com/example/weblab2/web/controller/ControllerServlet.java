@@ -19,6 +19,13 @@ import java.io.IOException;
 @Slf4j
 @WebServlet(value = "/points")
 public class ControllerServlet extends HttpServlet {
+    /**
+     * Обработчик GET-запроса.
+     * На этот сервлет приходят запросы, и его задача определить тип запроса и то, содержит ли он информацию о точках.
+     *
+     * @param req запрос
+     * @param resp ответ
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String queryString = req.getQueryString();

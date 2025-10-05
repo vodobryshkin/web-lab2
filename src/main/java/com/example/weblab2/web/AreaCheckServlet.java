@@ -26,6 +26,10 @@ public class AreaCheckServlet extends HttpServlet {
     private PointCheckerService pointCheckerService;
     private final SessionStorageRepository repository = new SessionStorageRepository();
 
+    /**
+     * Метод инициализации сервлета.
+     * При инициализации создаётся сервис по проверке точек, происходит связь с бизнес-логикой.
+     */
     @Override
     public void init() {
         try {
@@ -37,6 +41,16 @@ public class AreaCheckServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Обработчик GET-запроса.
+     * На этот сервлет приходят запросы, содержащие информацию о точке и типе проверки.
+     * Сначала из query string формируется DTO для отправки на pointCheckerService, а затем от него приходит DTO
+     * с результатом. Если проверка закончилась на этапе валдиации, то возвращаем код 422 (Unprocessable Entity).
+     * Если валидация прошла успешно, и точка прошла полную проверку, то сохраняем результат попадания в репозиторий.
+     *
+     * @param req запрос
+     * @param resp ответ
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         log.info("Got request with queryString={} from the ControllerServlet", req.getQueryString());
@@ -49,7 +63,6 @@ public class AreaCheckServlet extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/errors/422.jsp").forward(req, resp);
             return;
         }
-
 
         log.info("Get result of service logic: {}", pointCheckerResponse);
 
