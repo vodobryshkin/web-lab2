@@ -13,16 +13,11 @@
         <location>/WEB-INF/errors/400.jsp</location>
     </error-page>
     <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/errors/404.jsp</location>
+    </error-page>
+    <error-page>
         <error-code>422</error-code>
         <location>/WEB-INF/errors/422.jsp</location>
     </error-page>
-
-    <servlet>
-        <servlet-name>resultPage</servlet-name>
-        <jsp-file>/WEB-INF/result.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>resultPage</servlet-name>
-        <url-pattern>/points/check/result</url-pattern>
-    </servlet-mapping>
 </web-app>

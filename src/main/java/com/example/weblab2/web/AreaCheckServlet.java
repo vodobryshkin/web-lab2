@@ -71,6 +71,6 @@ public class AreaCheckServlet extends HttpServlet {
         repository.setHttpServletRequest(req);
         repository.add(pointCheckerResponse);
 
-        req.getRequestDispatcher("/points/check/result").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
     }
 }
