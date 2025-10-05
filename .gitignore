@@ -37,4 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
-/src/main/webapp/js/libs/decimal.js/
+/src/main/webapp/static/js/libs/decimal.js/

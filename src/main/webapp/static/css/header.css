@@ -1,0 +1,35 @@
+.header {
+    padding: 14px 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 24px;
+    font-family: "Corleone-Due-Regular", serif;
+    color: #E7DCC7;
+
+    background: #5A3E2B;
+    border-bottom: 1px solid #2B2320;
+    box-shadow: 0 8px 24px rgba(0,0,0,.45);
+}
+
+.header a {
+    display:inline-flex;
+    align-items:center;
+    line-height:0;
+
+    color: #B8902E;
+
+    text-decoration: none;
+}
+
+.header a:hover {
+    filter: brightness(1.08);
+}
+
+.header img {
+    display: block;
+    height: 160px;
+    width: auto;
+}
