@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/form-wrapper.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/table.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/toast.css">
     </head>
     <body>
         <header class="header">

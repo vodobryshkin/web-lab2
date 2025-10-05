@@ -1,4 +1,5 @@
 import Decimal from "../libs/decimal.js/decimal.mjs";
+import {toast} from "./toast.js";
 
 const NUMBER_REGEX = /^-?\d*.?\d+$/;
 
@@ -18,16 +19,16 @@ export function validateNumbers(x, y, r) {
 
     switch (valX) {
         case IS_NOT_A_NUMBER_CODE:
-            alert("X не является числом.");
+            toast("X is not a number.");
             return false;
 
         case NUMBER_IS_OUT_OF_RANGE_CODE:
-            alert("X выходит за границы (-5, 3).");
+            toast("X is out of range (-5, 3).");
             return false;
 
         case BLANK_IS_EMPTY_CODE:
-            alert("Поля ввода X пустое.")
-            return false
+            toast("X input is empty.")
+            return false;
 
         default:
             break
@@ -35,15 +36,15 @@ export function validateNumbers(x, y, r) {
 
     switch (valY) {
         case IS_NOT_A_NUMBER_CODE:
-            alert("Y не является числом.");
+            toast("Y is not a number.");
             return false;
 
         case NUMBER_IS_OUT_OF_RANGE_CODE:
-            alert("Y не равен ни одному из заданных значений.");
+            toast("Y is out of range.");
             return false;
 
         case BLANK_IS_EMPTY_CODE:
-            alert("Y не выбран.")
+            toast("Y input is empty.")
             return false
 
         default:
@@ -52,15 +53,15 @@ export function validateNumbers(x, y, r) {
 
     switch (valR) {
         case IS_NOT_A_NUMBER_CODE:
-            alert("R не является числом.");
+            toast("R is not a number.");
             return false;
 
         case NUMBER_IS_OUT_OF_RANGE_CODE:
-            alert("R не равен ни одному из заданных значений.");
+            toast("R is out of range.");
             return false;
 
         case BLANK_IS_EMPTY_CODE:
-            alert("R не выбран.")
+            toast("R input is empty.")
             return false
 
         default:
