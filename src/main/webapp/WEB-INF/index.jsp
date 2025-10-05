@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Лабораторная работа по веб-программированию #2</title>
+        <title>Web lab #2</title>
         <meta charset="UTF-8">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,7 +83,7 @@
                     <div class="task-section__wrapper table__wrapper">
                     <table id="result-table">
                         <tr>
-                            <th>X</th><th>Y</th><th>R</th><th>Shooting</th>
+                            <th>X</th><th>Y</th><th>R</th><th>Status</th>
                         </tr>
                         <%
                             @SuppressWarnings("unchecked")
