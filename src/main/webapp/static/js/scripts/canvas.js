@@ -15,11 +15,11 @@ function drawCoordinatePlane(rName) {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "#38251a";
     ctx.lineCap = "round";
     ctx.lineWidth = 3;
-    ctx.font = '20px Arial';
-    ctx.fillStyle = 'black';
+    ctx.font = '28px Corleone-Due-Regular';
+    ctx.fillStyle = "#38251a";
 
     let halfRName = rName === DEFAULT_R_NAME ? "R/2" : String(Number(rName) / 2);
 
@@ -89,7 +89,7 @@ function drawCoordinatePlane(rName) {
 
 function drawAreas() {
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "rgba(221,67,255,0.3)";
+    ctx.fillStyle = "rgba(211,28,28,0.4)";
 
     ctx.beginPath();
     ctx.lineCap = "round";
@@ -110,7 +110,7 @@ function drawAreas() {
 
 export function drawPoint(x, y, r) {
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#ae43ff";
+    ctx.fillStyle = "rgba(211,28,28,0.8)";
 
     const unit = rLength / r;
     const cx = canvas.width / 2;

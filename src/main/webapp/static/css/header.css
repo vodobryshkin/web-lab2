@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Corleone-Regular';
+    src: url('assets/fonts/Corleone-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Corleone-Due-Regular';
+    src: url('assets/fonts/Corleone-Due-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
 .header {
     padding: 14px 24px;
     display: flex;
