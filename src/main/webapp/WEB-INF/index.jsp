@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/task-section.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/canvas.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/form-wrapper.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/table.css">
     </head>
     <body>
         <header class="header">
@@ -78,33 +79,33 @@
                             Shoot (send point)
                         </button>
                     </form>
-                </div>
-                <canvas class="canvas" id="canvas" width="600" height="600"></canvas>
-            </div>
-            <div class="task-section__wrapper table__wrapper">
-                <table id="result-table">
-                    <tr>
-                        <th>X</th><th>Y</th><th>R</th><th>Попадание</th>
-                    </tr>
-                    <%
-                        @SuppressWarnings("unchecked")
-                        List<PointCheckerResponse> points =
-                                (List<PointCheckerResponse>) application.getAttribute("points");
+                    <div class="task-section__wrapper table__wrapper">
+                    <table id="result-table">
+                        <tr>
+                            <th>X</th><th>Y</th><th>R</th><th>Shooting</th>
+                        </tr>
+                        <%
+                            @SuppressWarnings("unchecked")
+                            List<PointCheckerResponse> points =
+                                    (List<PointCheckerResponse>) application.getAttribute("points");
 
-                        if (points != null && !points.isEmpty()) {
-                            for (com.example.weblab2.dto.response.PointCheckerResponse point : points) {
+                            if (points != null && !points.isEmpty()) {
+                                for (com.example.weblab2.dto.response.PointCheckerResponse point : points) {
                         %>
                         <tr>
                             <td><%= point.getX() %></td>
                             <td><%= point.getY() %></td>
                             <td><%= point.getR() %></td>
-                            <td><%= point.isStatus() ? "Попал" : "Не попал" %></td>
+                            <td><%= point.isStatus() ? "Hit" : "Missed" %></td>
                         </tr>
                         <%
-                        }
-                    }
-                    %>
-                </table>
+                                }
+                            }
+                        %>
+                    </table>
+                    </div>
+                </div>
+                <canvas class="canvas" id="canvas" width="600" height="600"></canvas>
             </div>
         </section>
 
