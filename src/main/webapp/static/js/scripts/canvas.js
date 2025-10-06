@@ -161,5 +161,14 @@ function getClickedCoordinates(e) {
         r: r,
         type: '"only_r"'
     });
-    location.href = `${form.action}?${params.toString()}`;
+
+    const kalashSound = new Audio('static/audio/kalash.mp3');
+    kalashSound.preload = 'auto';
+    kalashSound.volume = 1;
+    kalashSound.currentTime = 0;
+    kalashSound.play().catch(()=>{});
+
+    setTimeout(() => {
+        location.href = `${form.action}?${params.toString()}`;
+    }, 400);
 }
