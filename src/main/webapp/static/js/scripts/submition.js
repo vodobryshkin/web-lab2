@@ -2,7 +2,7 @@ import { validateNumbers } from "./validation.js";
 
 const form = document.getElementById("task-form");
 
-const kalash = new Audio(`${location.pathname.split('/')[1] ? '/' + location.pathname.split('/')[1] : ''}/static/audio/kalash.mp3`);
+const kalash = new Audio(`${window.APP_CTX}/static/audio/kalash.mp3`);
 kalash.preload = 'auto';
 kalash.volume = 1;
 

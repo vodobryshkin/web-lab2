@@ -19,6 +19,9 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/table.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/toast.css">
+        <script>
+            window.APP_CTX = '${pageContext.request.contextPath}';
+        </script>
     </head>
     <body>
         <header class="header">
@@ -113,8 +116,8 @@
 
         <footer class="footer">
             <h3>Made by vododbryshkin</h3>
-            <h5><a href="https://github.com/vodobryshkin/web-lab2" target="_blank" rel="noopener noreferrer"><img alt="значок гитхаба" src="../static/images/github.png"></a></h5>
-            <h5><a href="https://youtu.be/N1TClA5CVkQ?si=uOOxoMXAQSyoZoNH" target="_blank" rel="noopener noreferrer"><img alt="вито корлеоне" src="../static/images/vito-norm.png"></a></h5>
+            <h5><a href="https://github.com/vodobryshkin/web-lab2" target="_blank" rel="noopener noreferrer"><img alt="значок гитхаба" src="${pageContext.request.contextPath}/static/images/github.png"></a></h5>
+            <h5><a href="https://youtu.be/N1TClA5CVkQ?si=uOOxoMXAQSyoZoNH" target="_blank" rel="noopener noreferrer"><img alt="вито корлеоне" src="${pageContext.request.contextPath}/static/images/vito-norm.png"></a></h5>
         </footer>
 
 

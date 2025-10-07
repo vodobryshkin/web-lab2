@@ -162,7 +162,7 @@ function getClickedCoordinates(e) {
         type: '"only_r"'
     });
 
-    const kalashSound = new Audio('static/audio/kalash.mp3');
+    const kalashSound = new Audio(`${window.APP_CTX}/static/audio/kalash.mp3`);
     kalashSound.preload = 'auto';
     kalashSound.volume = 1;
     kalashSound.currentTime = 0;
