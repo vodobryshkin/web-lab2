@@ -70,11 +70,11 @@
         </section>
         <footer class="footer">
             <h3>Made by vododbryshkin</h3>
-            <h5><a href="https://github.com/vodobryshkin/web-lab2" target="_blank" rel="noopener noreferrer"><img alt="значок гитхаба" src="../static/images/github.png"></a></h5>
-            <h5><a href="https://youtu.be/N1TClA5CVkQ?si=uOOxoMXAQSyoZoNH" target="_blank" rel="noopener noreferrer"><img alt="вито корлеоне" src="../static/images/vito-norm.png"></a></h5>
+            <h5><a href="https://github.com/vodobryshkin/web-lab2" target="_blank" rel="noopener noreferrer"><img alt="значок гитхаба" src="${pageContext.request.contextPath}/static/images/github.png"></a></h5>
+            <h5><a href="https://youtu.be/N1TClA5CVkQ?si=uOOxoMXAQSyoZoNH" target="_blank" rel="noopener noreferrer"><img alt="вито корлеоне" src="${pageContext.request.contextPath}/static/images/vito-norm.png"></a></h5>
         </footer>
         <script type="module">
-            import {drawPoint, draw} from "../static/js/scripts/canvas.js";
+            import {drawPoint, draw} from "${pageContext.request.contextPath}/static/js/scripts/canvas.js";
             const canvas = document.getElementById('canvas');
             const { x, y, r } = canvas.dataset;
             draw(r);
