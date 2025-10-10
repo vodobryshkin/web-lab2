@@ -68,10 +68,10 @@ public class AreaCheckServlet extends HttpServlet {
 
         log.info("Get result of service logic: {}", pointCheckerResponse);
 
-        req.setAttribute("result", pointCheckerResponse);
+        req.getSession().setAttribute("result", pointCheckerResponse);
 
         repository.add(pointCheckerResponse);
 
-        req.getRequestDispatcher("/WEB-INF/result.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/result");
     }
 }
