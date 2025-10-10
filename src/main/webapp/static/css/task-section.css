@@ -1,0 +1,15 @@
+.task-section {
+    max-width: 1100px;
+    margin: 28px auto 64px;
+    padding: 0 20px;
+}
+
+.task-section > div {
+    background:
+            radial-gradient(140% 100% at 100% 0%, rgba(184,144,46,.06), transparent 60%),
+            #1F1713;
+    border:1px solid #2B2320;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+}
