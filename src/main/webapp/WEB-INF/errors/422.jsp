@@ -6,9 +6,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/body.css">
-    <link rel="stylesheet" href="../../static/css/header.css">
-    <link rel="stylesheet" href="../../static/css/header__element.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/body.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/header__element.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/footer.css">
     <style>
         body {
@@ -46,7 +46,7 @@
     <h1 class="header__element header__element_group-number">P3207</h1>
     <h1 class="header__element header__element_variant">Variant 853932</h1>
     <a href="https://en.wikipedia.org/wiki/The_Godfather" target="_blank" rel="noopener noreferrer">
-        <img src="../../static/images/godfather-logo.png" alt="Logo of the Godfather">
+        <img src="${pageContext.request.contextPath}/static/images/godfather-logo.png" alt="Logo of the Godfather">
     </a>
 </header>
 <h1>422 Unprocessable Entity — the request is well-formed, but the server can’t process it due to semantic errors
