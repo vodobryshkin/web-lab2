@@ -19,6 +19,8 @@ import java.io.IOException;
 @Slf4j
 @WebServlet(value = "/points")
 public class ControllerServlet extends HttpServlet {
+    private final QueryStringChecker queryStringChecker = new QueryStringChecker();
+
     /**
      * Обработчик GET-запроса.
      * На этот сервлет приходят запросы, и его задача определить тип запроса и то, содержит ли он информацию о точках.
@@ -32,7 +34,7 @@ public class ControllerServlet extends HttpServlet {
 
         log.info("The ControllerServlet received a request from the URL with queryString={}", req.getQueryString());
 
-        if (queryString == null || !new QueryStringChecker().check(queryString)) {
+        if (queryString == null || !queryStringChecker.check(queryString)) {
             resp.sendRedirect(req.getContextPath() + "/");
             log.info("Query string is null or does not match pattern.");
             return;
