@@ -31,4 +31,12 @@
         <mime-type>application/javascript</mime-type>
     </mime-mapping>
 
+    <servlet>
+        <servlet-name>ResultServlet</servlet-name>
+        <jsp-file>/WEB-INF/result.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ResultServlet</servlet-name>
+        <url-pattern>/result</url-pattern>
+    </servlet-mapping>
 </web-app>

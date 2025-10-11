@@ -1,4 +1,4 @@
-<jsp:useBean id="result" scope="request" type="com.example.weblab2.dto.response.PointCheckerResponse"/>
+<jsp:useBean id="result" scope="session" type="com.example.weblab2.dto.response.PointCheckerResponse"/>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
