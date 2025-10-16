@@ -68,18 +68,6 @@
         </dependency>
     </dependencies>
 
-    <repositories>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/vodobryshkin/big-validation-lib</url>
-        </repository>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/vodobryshkin/big-decimal-lib</url>
-        </repository>
-    </repositories>
-
-
     <build>
         <plugins>
             <plugin>
