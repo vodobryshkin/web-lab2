@@ -68,6 +68,21 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>gh-big-decimal</id>
+            <url>https://maven.pkg.github.com/vodobryshkin/big-decimal-lib</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>gh-big-validation</id>
+            <url>https://maven.pkg.github.com/vodobryshkin/big-validation-lib</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>
