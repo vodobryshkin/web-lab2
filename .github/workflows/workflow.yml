@@ -9,6 +9,8 @@ on:
 permissions:
   contents: read
   packages: read
+  pages: write        # для GitHub Pages
+  id-token: write     # для deploy-pages OIDC
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -31,7 +33,7 @@ jobs:
           server-username: vodobryshkin
           server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
 
-      - name: Pre-seed Maven local repo with GH Packages
+      - name: Create Maven local repo with GH Packages
         env:
           GHP_USER: vodobryshkin
           GHP_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
@@ -60,7 +62,7 @@ jobs:
             -Dfile=coordinates-validation-web-labs-2.1.0.jar \
             -DpomFile=coordinates-validation-web-labs-2.1.0.pom
 
-      - name: Read Maven project.version
+      - name: Read version from Maven
         id: version_from_maven
         run: |
           V=$(mvn -q -ntp -DforceStdout help:evaluate -Dexpression=project.version | tr -d '\r')
@@ -70,7 +72,15 @@ jobs:
       - name: Build, test and coverage with Maven
         run: mvn -B -U clean verify
 
-      - name: Copy WAR to predictable name
+      - name: Generate Javadoc
+        run: mvn -B -q -DskipTests javadoc:javadoc
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/site/apidocs
+
+      - name: Copy WAR as artifact
         run: |
           mkdir -p dist
           WAR=$(ls -1 target/*.war | head -n1)
@@ -116,7 +126,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build, push_image]
     steps:
-      - name: Deploy to server (with SSH)
+      - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -144,3 +154,14 @@ jobs:
             docker ps -f name="$CONTAINER_NAME"
             echo "Last logs:"
             docker logs --tail 50 "$CONTAINER_NAME" || true
+
+  javadoc_pages_deploy:
+    if: ${{ github.event_name == 'push' }}
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
