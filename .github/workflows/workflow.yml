@@ -27,7 +27,7 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          server-id: gh-big-decimal, gh-big-validation
+          server-id: gh-big-decimal,gh-big-validation
           server-username: vodobryshkin
           server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
 
