@@ -29,7 +29,7 @@ jobs:
           cache: maven
           server-id: gh-big-decimal, gh-big-validation
           server-username: ${{ github.actor }}
-          server-password: ${{ secrets.GITHUB_TOKEN }}
+          server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
 
       - name: Read Maven project.version
         id: version_from_maven
