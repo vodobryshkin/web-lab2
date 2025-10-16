@@ -136,7 +136,7 @@ jobs:
             IMAGE_VER="${{ needs.build.outputs.version }}"
             [ -n "$IMAGE_VER" ] || { echo "ERROR: version is empty"; exit 1; }
 
-            IMAGE="docker.io/${{ secrets.REGISTRY_USERNAME }}/vodobryshkin-lab2-dop:${IMAGE_VER}"
+            IMAGE="docker.io/${{ secrets.REGISTRY_USERNAME }}/lab2:${IMAGE_VER}"
             CONTAINER_NAME="mylab"
 
             echo "Using image: $IMAGE"
