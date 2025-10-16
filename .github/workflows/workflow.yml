@@ -27,42 +27,40 @@ jobs:
           distribution: temurin
           java-version: '21'
           cache: maven
-          # ПИШЕМ БЕЗ ПРОБЕЛОВ
           server-id: gh-big-decimal,gh-big-validation
           server-username: vodobryshkin
           server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
 
-      # ===== Диагностика Maven =====
-      - name: Debug Maven settings & repos
-        run: |
-          echo "== effective settings (servers) =="
-          mvn -q -ntp help:effective-settings | sed -n '/<servers>/,/<\/servers>/p'
-          echo
-          echo "== effective POM (repos) =="
-          mvn -q -ntp help:effective-pom | sed -n '/<repositories>/,/<\/repositories>/p'
-
-      - name: Probe GitHub Packages (curl + dependency:get)
-        continue-on-error: true
+      - name: Pre-seed Maven local repo with GH Packages
         env:
           GHP_USER: vodobryshkin
           GHP_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
         run: |
-          set -x
-          # HEAD-запросы к POM-файлам (ожидаем 200/302, но не 401)
-          echo "== curl to bigdecimalgm POM =="
-          curl -sS -o /dev/null -w "HTTP %{http_code}\n" \
-            -u "${GHP_USER}:${GHP_TOKEN}" \
-            "https://maven.pkg.github.com/vodobryshkin/big-decimal-lib/ru/ifmo/se/bigdecimalgm/1.0.1/bigdecimalgm-1.0.1.pom"
+          set -eux
 
-          echo "== curl to coordinates-validation POM =="
-          curl -sS -o /dev/null -w "HTTP %{http_code}\n" \
-            -u "${GHP_USER}:${GHP_TOKEN}" \
-            "https://maven.pkg.github.com/vodobryshkin/big-validation-lib/ru/ifmo/se/coordinates-validation-web-labs/2.1.0/coordinates-validation-web-labs-2.1.0.pom"
+          # 1) ru.ifmo.se:bigdecimalgm:1.0.1
+          BASE1="https://maven.pkg.github.com/vodobryshkin/big-decimal-lib/ru/ifmo/se/bigdecimalgm/1.0.1"
+          curl -fL -u "${GHP_USER}:${GHP_TOKEN}" -o bigdecimalgm-1.0.1.pom  "${BASE1}/bigdecimalgm-1.0.1.pom"
+          curl -fL -u "${GHP_USER}:${GHP_TOKEN}" -o bigdecimalgm-1.0.1.jar  "${BASE1}/bigdecimalgm-1.0.1.jar"
+          mvn -ntp install:install-file \
+            -DgroupId=ru.ifmo.se \
+            -DartifactId=bigdecimalgm \
+            -Dversion=1.0.1 \
+            -Dpackaging=jar \
+            -Dfile=bigdecimalgm-1.0.1.jar \
+            -DpomFile=bigdecimalgm-1.0.1.pom
 
-          # Пробный fetch через Maven (покажет, какие репы и креды используются)
-          mvn -X -ntp dependency:get -Dartifact=ru.ifmo.se:bigdecimalgm:1.0.1 || true
-          mvn -X -ntp dependency:get -Dartifact=ru.ifmo.se:coordinates-validation-web-labs:2.1.0 || true
-      # ===== /Диагностика =====
+          # 2) ru.ifmo.se:coordinates-validation-web-labs:2.1.0
+          BASE2="https://maven.pkg.github.com/vodobryshkin/big-validation-lib/ru/ifmo/se/coordinates-validation-web-labs/2.1.0"
+          curl -fL -u "${GHP_USER}:${GHP_TOKEN}" -o coordinates-validation-web-labs-2.1.0.pom "${BASE2}/coordinates-validation-web-labs-2.1.0.pom"
+          curl -fL -u "${GHP_USER}:${GHP_TOKEN}" -o coordinates-validation-web-labs-2.1.0.jar "${BASE2}/coordinates-validation-web-labs-2.1.0.jar"
+          mvn -ntp install:install-file \
+            -DgroupId=ru.ifmo.se \
+            -DartifactId=coordinates-validation-web-labs \
+            -Dversion=2.1.0 \
+            -Dpackaging=jar \
+            -Dfile=coordinates-validation-web-labs-2.1.0.jar \
+            -DpomFile=coordinates-validation-web-labs-2.1.0.pom
 
       - name: Read Maven project.version
         id: version_from_maven
