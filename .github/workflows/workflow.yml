@@ -28,7 +28,7 @@ jobs:
           java-version: '21'
           cache: maven
           server-id: gh-big-decimal, gh-big-validation
-          server-username: ${{ github.actor }}
+          server-username: vodobryshkin
           server-password: ${{ secrets.GH_PACKAGES_TOKEN }}
 
       - name: Read Maven project.version
