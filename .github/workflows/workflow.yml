@@ -1,0 +1,88 @@
+name: workflow.yml
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version_from_maven.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Read Maven project.version
+        id: version_from_maven
+        run: |
+          set -euo pipefail
+          V=$(mvn -q -ntp -DforceStdout help:evaluate -Dexpression=project.version | tr -d '\r')
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Resolved Maven version: $V"
+
+      - name: Build, test and coverage with Maven
+        run: mvn -B clean verify
+
+  push_image:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          registry: docker.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            docker.io/${{ secrets.REGISTRY_USERNAME }}/vodobryshkin-lab2-dop:${{ needs.build.outputs.version }}
+            docker.io/${{ secrets.REGISTRY_USERNAME }}/vodobryshkin-lab2-dop:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build, push_image]
+    steps:
+      - name: Deploy to server (with SSH)
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port: ${{ secrets.SERVER_PORT || '22' }}
+          script: |
+            set -euo pipefail
+
+            IMAGE_VER="${{ needs.build.outputs.version }}"
+            [ -n "$IMAGE_VER" ] || { echo "ERROR: version is empty"; exit 1; }
+
+            IMAGE="docker.io/${{ secrets.REGISTRY_USERNAME }}/vodobryshkin-lab2-dop:${IMAGE_VER}"
+            CONTAINER_NAME="mylab"
+
+            echo "Using image: $IMAGE"
+            docker pull "$IMAGE"
+
+            docker stop "$CONTAINER_NAME" || true
+            docker rm "$CONTAINER_NAME" || true
+
+            docker run -d --name "$CONTAINER_NAME" --restart unless-stopped \
+              -p 127.0.0.1:8080:8080 "$IMAGE"
+
+            docker ps -f name="$CONTAINER_NAME"
+            echo "Last logs:"
+            docker logs --tail 50 "$CONTAINER_NAME" || true
+
