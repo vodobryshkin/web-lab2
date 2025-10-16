@@ -9,8 +9,8 @@ on:
 permissions:
   contents: read
   packages: read
-  pages: write        # для GitHub Pages
-  id-token: write     # для deploy-pages OIDC
+  pages: write
+  id-token: write
 
 concurrency:
   group: ci-${{ github.ref }}
