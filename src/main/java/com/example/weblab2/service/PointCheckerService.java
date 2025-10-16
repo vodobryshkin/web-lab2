@@ -25,8 +25,8 @@ public class PointCheckerService {
     private final CheckoutManager checkoutManager;
 
     /**
-     * Конструктор класса PointCheckerService. Внутри него создаются экземпляры менеджера для валидации и
-     * проверки попадания.
+     * Конструктор класса PointCheckerService, который принимает пути к файлу.
+     * Внутри него создаются экземпляры менеджера для валидации и проверки попадания.
      *
      * @param valConfigPath путь к конфигурации для валидации.
      * @param areaConfigPath путь к конфигурации для создания областей для проверки.
@@ -38,6 +38,8 @@ public class PointCheckerService {
 
         this.valConfigPath = valConfigPath;
     }
+
+
 
     /**
      * Метод для проверки бизнес-логикой.

@@ -15,6 +15,9 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 /**
  * Сервлет, осуществляющий проверку попадания точки в область на координатной плоскости и формирующий HTML-страницу
@@ -33,13 +36,30 @@ public class AreaCheckServlet extends HttpServlet {
      */
     @Override
     public void init() {
+        String validationPath;
         try {
-            pointCheckerService = new PointCheckerService(System.getenv("VALIDATION_PATH"),
-                    System.getenv("AREAS_PATH"));
-        } catch (IOException e) {
-            log.error("{}", e.getMessage());
+            validationPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
+
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            pointCheckerService = new PointCheckerService(validationPath, areasPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         repository = new ApplicationContextRepository(getServletContext());
     }
 
