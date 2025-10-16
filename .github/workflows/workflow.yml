@@ -109,8 +109,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            docker.io/${{ secrets.REGISTRY_USERNAME }}/vodobryshkin-lab2-dop:${{ needs.build.outputs.version }}
-            docker.io/${{ secrets.REGISTRY_USERNAME }}/vodobryshkin-lab2-dop:latest
+            docker.io/${{ secrets.REGISTRY_USERNAME }}/lab2:${{ needs.build.outputs.version }}
+            docker.io/${{ secrets.REGISTRY_USERNAME }}/lab2:latest
 
   deploy:
     runs-on: ubuntu-latest
