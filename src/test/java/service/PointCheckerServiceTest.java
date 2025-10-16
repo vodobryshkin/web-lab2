@@ -9,16 +9,35 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PointCheckerServiceTest {
-    private final String valConf = "/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/validation.json";
-    private final String areaConf = "/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json";
 
     @Test
     @DisplayName("Корректная точка с правильными данными попадает. X Y важны. r=1. Прямоугольник")
     public void testTrueDataRectangleXYMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "0.5";
@@ -35,6 +54,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с правильными данными попадает. X Y не важны. r=1. Прямоугольник")
     public void testTrueDataRectangleXGoodYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "0.5";
@@ -51,6 +89,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не попадает. X Y неважны. r=1. Прямоугольник")
     public void testTrueDataRectangleXYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-123123";
@@ -67,6 +124,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не проходит валидацию. X Y неважны. r=1. Прямоугольник")
     public void testFalseDataRectangleXYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-12312dd3";
@@ -83,6 +159,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не проходит валидацию. X Y важны. r=1. Прямоугольник")
     public void testFalseDataRectangleXYMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "0.7";
@@ -99,6 +194,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с правильными данными попадает. X Y важны. r=2. Треугольник")
     public void testTrueDataTriangleXYMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-0.5";
@@ -115,6 +229,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с правильными данными попадает. X Y не важны. r=2. Треугольник")
     public void testTrueDataTriangleXGoodYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-0.9";
@@ -131,6 +264,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не попадает. X Y неважны. r=2. Треугольник")
     public void testTrueDataTriangleXYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-123123";
@@ -147,6 +299,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не проходит валидацию. X Y неважны. r=2. Треугольник")
     public void testFalseDataTriangleXYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-12312dd3";
@@ -163,6 +334,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не проходит валидацию. X Y важны. r=2. Треугольник")
     public void testFalseDataTriangleXYMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-0.9";
@@ -179,6 +369,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с правильными данными попадает. X Y важны. r=2.5. Круг")
     public void testTrueDataCircleXYMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "0.5";
@@ -195,6 +404,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с правильными данными попадает. X Y не важны. r=2.5. Круг")
     public void testTrueDataCircleXGoodYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "0.5";
@@ -211,6 +439,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не попадает. X Y неважны. r=2.5. Круг")
     public void testTrueDataCircleXYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-123123";
@@ -227,6 +474,25 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не проходит валидацию. X Y неважны. r=2.5. Круг")
     public void testFalseDataCircleXYNoMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "-12312dd3";
@@ -243,6 +509,24 @@ public class PointCheckerServiceTest {
     @Test
     @DisplayName("Корректная точка с неправильными данными не проходит валидацию. X Y важны. r=2.5. Круг")
     public void testFalseDataCircleXYMatterR1() throws IOException {
+        String valConf;
+        try {
+            valConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("validation.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
+        String areaConf;
+        try {
+            areaConf = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+
         PointCheckerService pointCheckerService = new PointCheckerService(valConf, areaConf);
 
         String x = "0.5";

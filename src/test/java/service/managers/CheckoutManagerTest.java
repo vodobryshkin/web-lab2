@@ -8,15 +8,27 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckoutManagerTest {
+
     @Test
     @DisplayName("Точка попала1")
     void pointIsInTheAreasTest1() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);
         CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("1"), new BigDecimal("1")),
                 new BigDecimal("5"));
 
@@ -25,8 +37,15 @@ public class CheckoutManagerTest {
 
     @Test
     @DisplayName("Точка попала2")
-    void pointIsInTheAreasTest2() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
+    void pointIsInTheAreasTest2() throws IOException {String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);
         CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("0.5"), new BigDecimal("-0.5")),
                 new BigDecimal("3"));
 
@@ -36,7 +55,15 @@ public class CheckoutManagerTest {
     @Test
     @DisplayName("Точка попала3")
     void pointIsInTheAreasTest3() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);
         CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("0"), new BigDecimal("0")),
                 new BigDecimal("5"));
 
@@ -46,7 +73,15 @@ public class CheckoutManagerTest {
     @Test
     @DisplayName("Точка не попала1")
     void pointIsNotInTheAreasTest1() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);
         CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("10"), new BigDecimal("1")),
                 new BigDecimal("5"));
 
@@ -56,7 +91,15 @@ public class CheckoutManagerTest {
     @Test
     @DisplayName("Точка не попала2")
     void pointIsNotInTheAreasTest2() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);
         CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("4"), new BigDecimal("-4")),
                 new BigDecimal("4"));
 
@@ -66,7 +109,15 @@ public class CheckoutManagerTest {
     @Test
     @DisplayName("Точка не попала3")
     void pointIsNotInTheAreasTest3() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);
         CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("-2"), new BigDecimal("-2")),
                 new BigDecimal("4"));
 
@@ -76,8 +127,15 @@ public class CheckoutManagerTest {
     @Test
     @DisplayName("Точка не попала4")
     void pointIsNotInTheAreasTest4() throws IOException {
-        CheckoutManager checkoutManager = new CheckoutManager("/home/vodobryshkin/progs/proj/IdeaProjects/web-lab2/src/main/resources/areas.json");
-        CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("1.5"), new BigDecimal("-1.5")),
+        String areasPath;
+        try {
+            areasPath = Paths.get(
+                    Objects.requireNonNull(getClass().getClassLoader().getResource("areas.json")).toURI()
+            ).toString();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+        CheckoutManager checkoutManager = new CheckoutManager(areasPath);        CheckoutRequest checkoutRequest = new CheckoutRequest(new Point(new BigDecimal("1.5"), new BigDecimal("-1.5")),
                 new BigDecimal("3"));
 
         assertFalse(checkoutManager.checkRequest(checkoutRequest));
