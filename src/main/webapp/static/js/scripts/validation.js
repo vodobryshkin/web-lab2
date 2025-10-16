@@ -1,4 +1,3 @@
-import Decimal from "../libs/decimal.js/decimal.mjs";
 import {toast} from "./toast.js";
 
 const NUMBER_REGEX = /^-?\d*.?\d+$/;
@@ -86,9 +85,9 @@ function validateX(potNumber) {
     let potIsNumber = isNumber(potNumber);
 
     if (potIsNumber === IS_NUMBER_CODE) {
-        let number = new Decimal(potNumber);
+        let number = Number(potNumber);
 
-        if (number.lt(new Decimal("-5")) || number.gt(new Decimal("3"))) {
+        if (number < Number("-5") || number > Number("3")) {
             return NUMBER_IS_OUT_OF_RANGE_CODE;
         }
 
@@ -102,13 +101,13 @@ function validateY(potNumber) {
     let potIsNumber = isNumber(potNumber);
 
     if (potIsNumber === IS_NUMBER_CODE) {
-        let number = new Decimal(potNumber);
+        let number = Number(potNumber);
         let yBorders = ["-2", "-1.5", "-1", "-0.5", "0", "0.5", "1", "1.5", "2"]
 
         for (let i = 0; i < yBorders.length; i++) {
-            let yGr = new Decimal(yBorders[i]);
+            let yGr = Number(yBorders[i]);
 
-            if (number.eq(yGr)) {
+            if (number === yGr) {
                 return true;
             }
         }
@@ -123,13 +122,13 @@ export function validateR(potNumber) {
     let potIsNumber = isNumber(potNumber);
 
     if (potIsNumber === IS_NUMBER_CODE) {
-        let number = new Decimal(potNumber);
+        let number = Number(potNumber);
         let rBorders = ["1", "1.5", "2", "2.5", "3"]
 
         for (let i = 0; i < rBorders.length; i++) {
-            let rGr = new Decimal(rBorders[i]);
+            let rGr = Number(rBorders[i]);
 
-            if (number.eq(rGr)) {
+            if (number === rGr) {
                 return true;
             }
         }
