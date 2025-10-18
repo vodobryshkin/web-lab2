@@ -27,6 +27,14 @@
 Разработанное веб-приложение необходимо развернуть на сервере WildFly. Сервер должен быть запущен в standalone-конфигурации, порты должны быть настроены в соответствии с выданным portbase, доступ к http listener'у должен быть открыт для всех IP.
 
 ---
+## Для запуска локально
+```shell
+docker pull vodobryshkin/lab2:latest
+docker run --network host vodobryshkin/lab2:latest
+```
+
+---
+## Примечания
 - Фронтед выполнен в стилистике The Godfather
 - На бэкенде для валидации значений используется библиотека https://github.com/vodobryshkin/big-validation-lib
 - На бэкенде для проверки значений используется библиотека https://github.com/vodobryshkin/big-decimal-lib
